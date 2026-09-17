@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DisclaimerCallout } from "@/components/disclaimer-callout";
 import { OvernightForm } from "@/components/overnight-form";
-import { prices, stripeLink } from "@/lib/site";
+import { stripeLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Overnight Pack intake",
@@ -16,7 +16,7 @@ export default function OvernightPage() {
     <main className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-14 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
-          Overnight · ${prices.overnight}
+          Optional · packs later
         </p>
         <h1 className="mt-3 font-serif text-4xl tracking-tight">
           Paste the rejection. Get a pack before US morning.

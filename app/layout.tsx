@@ -24,7 +24,7 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
   title: {
-    default: `${site.name} — overnight App Store rejection packs`,
+    default: `${site.name} — free App Store wrapper precheck`,
     template: `%s · ${site.name}`,
   },
   description: site.description,

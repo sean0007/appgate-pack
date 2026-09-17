@@ -1,9 +1,8 @@
 export const site = {
   name: "AppGate Pack",
-  tagline:
-    "Overnight App Store rejection evidence and Resolution Center reply packs.",
+  tagline: "Free App Store wrapper precheck for 4.2 / 4.3 / metadata.",
   description:
-    "Paste-ready Guideline 4.2 / 4.3 / metadata packs for vibe-coded, Capacitor, and WebView apps. Not legal advice. No approval guarantee. We never log into App Store Connect.",
+    "Free Guideline 4.2 / 4.3 / metadata precheck and Capacitor evidence checklist for vibe-coded and WebView apps. Not legal advice. No approval guarantee. We never log into App Store Connect.",
 } as const;
 
 export function siteUrl() {

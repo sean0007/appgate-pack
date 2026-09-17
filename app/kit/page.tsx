@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckoutCta } from "@/components/checkout-cta";
 import { DisclaimerCallout } from "@/components/disclaimer-callout";
 import { MarkdownDoc } from "@/components/markdown-doc";
 import { getKitDocs } from "@/lib/kit";
-import { prices } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "AppGate Kit",
@@ -18,20 +16,22 @@ export default async function KitPage() {
   return (
     <main className="mx-auto w-full max-w-6xl px-5 py-14">
       <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
-        Self-serve · ${prices.kit}
+        Templates · checkout later
       </p>
       <h1 className="mt-3 max-w-3xl font-serif text-4xl tracking-tight">
         AppGate Kit — paste-ready skeletons for wrapper rejections.
       </h1>
       <p className="mt-4 max-w-2xl text-base leading-7 text-muted">
-        Downloadable markdown, formatted like a print-to-PDF brief. Use the
-        checklists before you resubmit; use the skeletons in Resolution Center.
-        Apple still decides.
+        Downloadable markdown, formatted like a print-to-PDF brief. Start with
+        the free precheck and 4.2 list; these templates are here when you want
+        the longer pack. Apple still decides.
       </p>
-      <div className="mt-6 flex flex-wrap items-center gap-3">
-        <CheckoutCta sku="kit">Buy Kit · ${prices.kit}</CheckoutCta>
-        <Link href="/overnight" className="text-sm text-accent underline">
-          Need a custom overnight pack instead?
+      <div className="mt-6 flex flex-wrap items-center gap-4 text-sm">
+        <Link href="/check" className="text-accent underline">
+          Free wrapper precheck
+        </Link>
+        <Link href="/free/4-2-capacitor" className="text-accent underline">
+          Free 4.2 Capacitor checklist
         </Link>
       </div>
 
