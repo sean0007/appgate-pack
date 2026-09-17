@@ -26,7 +26,11 @@ function summaryFrom(body: string) {
   for (const line of body.split("\n")) {
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith("#")) continue;
-    return trimmed.replace(/^>\s*/, "");
+    return trimmed
+      .replace(/^>\s*/, "")
+      .replaceAll("**", "")
+      .replaceAll("`", "")
+      .replaceAll("*", "");
   }
   return "";
 }
