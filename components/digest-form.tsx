@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { digestCopy } from "@/lib/digest";
 
 const STORAGE_KEY = "appgate.digest.local";
@@ -49,6 +49,23 @@ export function DigestForm({ initialNotice }: { initialNotice?: Notice | null })
   const [error, setError] = useState<string | null>(
     initial && !initial.ok ? initial.message : null,
   );
+  const [localEmail, setLocalEmail] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as { email?: unknown; name?: unknown };
+      if (typeof parsed.email !== "string" || !parsed.email) return;
+      const savedEmail = parsed.email;
+      const savedName = typeof parsed.name === "string" ? parsed.name : "";
+      setLocalEmail(savedEmail);
+      setEmail((current) => current || savedEmail);
+      if (savedName) setName((current) => current || savedName);
+    } catch {
+      // Ignore unreadable local notes. Nothing is stored server-side either way.
+    }
+  }, []);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -156,6 +173,12 @@ export function DigestForm({ initialNotice }: { initialNotice?: Notice | null })
           No payment. If a digest webhook isn’t configured, we don’t store this
           email on the server.
         </p>
+        {localEmail ? (
+          <p className="text-xs leading-5 text-muted" role="status">
+            This browser already has {localEmail} noted locally. Nothing from
+            that note is stored on the server.
+          </p>
+        ) : null}
         {error ? (
           <p className="text-sm text-accent-2" role="alert">
             {error}

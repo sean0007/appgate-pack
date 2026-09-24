@@ -14,6 +14,13 @@ type Props = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
+const shareImage = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: "AppGate Pack free wrapper precheck scorecard: HIGH wrapper risk for a Capacitor app, with 4.2, 4.3, and metadata flags. Not a review prediction.",
+} as const;
+
 function checkShareMetadata(
   title: string,
   description: string,
@@ -27,11 +34,13 @@ function checkShareMetadata(
       title,
       description,
       url: path,
+      images: [shareImage],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [shareImage.url],
     },
   };
 }
