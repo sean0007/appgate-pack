@@ -11,6 +11,32 @@ export function SiteFooter() {
             Apple decides. No approval guarantee. We never log into App Store
             Connect and we never ask for your Apple ID.
           </p>
+          <p className="mt-3 text-xs leading-5 text-muted">
+            More free tools{" "}
+            <a
+              href="https://ads-risk-check.vercel.app"
+              className="underline decoration-line underline-offset-2 hover:text-ink"
+              rel="noreferrer"
+            >
+              Ads risk check
+            </a>
+            {" · "}
+            <a
+              href="https://ai-bottleneck-map.vercel.app"
+              className="underline decoration-line underline-offset-2 hover:text-ink"
+              rel="noreferrer"
+            >
+              AI bottleneck map
+            </a>
+            {" · "}
+            <a
+              href="https://viral-attention-map.vercel.app"
+              className="underline decoration-line underline-offset-2 hover:text-ink"
+              rel="noreferrer"
+            >
+              Viral attention map
+            </a>
+          </p>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
           <Link href="/check" className="hover:text-ink">

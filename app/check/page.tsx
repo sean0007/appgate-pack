@@ -14,20 +14,52 @@ type Props = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
+const shareImage = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: "AppGate Pack free wrapper precheck scorecard: HIGH wrapper risk for a Capacitor app, with 4.2, 4.3, and metadata flags. Not a review prediction.",
+} as const;
+
+function checkShareMetadata(
+  title: string,
+  description: string,
+  path: string,
+): Metadata {
+  return {
+    title,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      title,
+      description,
+      url: path,
+      images: [shareImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [shareImage.url],
+    },
+  };
+}
+
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const input = parseCheckInput(await searchParams);
   if (!input) {
-    return {
-      title: "Free wrapper precheck",
-      description:
-        "Paste your stack and three “native” features. Get a shareable 4.2 / 4.3 / metadata risk card. No login. No payment.",
-    };
+    return checkShareMetadata(
+      "Free App Store wrapper precheck",
+      "Paste your stack and three native features. Get a shareable HIGH / MED / LOW card for Guidelines 4.2, 4.3, and metadata. No login. No payment. Not a guarantee — Apple decides.",
+      "/check",
+    );
   }
   const result = scorePrecheck(input);
-  return {
-    title: `${input.name}: wrapper risk ${result.overall}`,
-    description: `${result.blurb} 4.2 ${result.flags["4.2"].level}. Not a guarantee — Apple decides.`,
-  };
+  return checkShareMetadata(
+    `${input.name}: wrapper risk ${result.overall}`,
+    `${result.blurb} 4.2 ${result.flags["4.2"].level}, 4.3 ${result.flags["4.3"].level}, metadata ${result.flags.metadata.level}. Not a guarantee — Apple decides.`,
+    `/check?${toCheckQuery(input)}`,
+  );
 }
 
 export default async function CheckPage({ searchParams }: Props) {

@@ -29,11 +29,17 @@ export const metadata: Metadata = {
   },
   description: site.description,
   openGraph: {
-    title: site.name,
+    title: `${site.name} — free App Store wrapper precheck`,
     description: site.description,
-    url: siteUrl(),
+    url: "/",
     siteName: site.name,
     type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — free App Store wrapper precheck`,
+    description: site.description,
   },
 };
 

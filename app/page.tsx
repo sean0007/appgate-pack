@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { DisclaimerCallout } from "@/components/disclaimer-callout";
 import { ResultCard } from "@/components/result-card";
@@ -8,6 +9,26 @@ import {
   toCheckQuery,
 } from "@/lib/precheck";
 import { siteUrl } from "@/lib/site";
+
+const shareTitle = "Will Apple bounce your Capacitor app?";
+const shareDescription =
+  "Free App Store wrapper precheck. Paste a stack and three native features and get a shareable HIGH / MED / LOW card for Guidelines 4.2, 4.3, and metadata. No login. No payment. Not legal advice — Apple decides.";
+
+export const metadata: Metadata = {
+  title: { absolute: `${shareTitle} · AppGate Pack` },
+  description: shareDescription,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: shareTitle,
+    description: shareDescription,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: shareTitle,
+    description: shareDescription,
+  },
+};
 
 const magnets = [
   {
