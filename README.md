@@ -1,5 +1,7 @@
 # AppGate Pack
 
+**Live:** [https://appgate-pack.vercel.app](https://appgate-pack.vercel.app) — start at [/check](https://appgate-pack.vercel.app/check), the free wrapper scorecard.
+
 Free **click magnets** for vibe-coded / Capacitor / WebView App Store rejections (Guidelines 4.2 / 4.3 / metadata). Packets exist; **click magnets first, Stripe optional.**
 
 Not legal advice. No approval guarantee. We never log into App Store Connect.
@@ -42,18 +44,19 @@ Click magnets work with **no env vars**. Stripe and ads are stubs.
 
 | Variable | Required | Purpose |
 |----------|----------|---------|
-| `NEXT_PUBLIC_SITE_URL` | Recommended in production | Canonical URL for share links + metadata |
-| `SUBMISSION_WEBHOOK_URL` | Optional | POST JSON for overnight intake **and** digest signups |
+| `NEXT_PUBLIC_SITE_URL` | Optional | Canonical origin for `og:url`, canonical, and copied `/check` links. Defaults to `https://appgate-pack.vercel.app`. Localhost is ignored on Vercel. |
+| `DIGEST_WEBHOOK_URL` | Optional | `https` endpoint for digest signups. If unset or not `https`, `POST /api/digest` returns 200 and stores nothing server-side. |
+| `SUBMISSION_WEBHOOK_URL` | Optional | POST JSON for overnight intake |
 | `NEXT_PUBLIC_STRIPE_PAYMENT_LINK_KIT` | Optional stub | Kit Payment Link if/when charging |
 | `NEXT_PUBLIC_STRIPE_PAYMENT_LINK_OVERNIGHT` | Optional stub | Overnight Payment Link if/when charging |
 
-When Payment Links are unset, paid CTAs stay “coming later.” Digest/overnight still store JSON under `data/submissions/` (or `/tmp` on serverless).
+When Payment Links are unset, paid CTAs stay “coming later.” Overnight intake still writes JSON under `data/submissions/` (or `/tmp` on serverless) and can forward to `SUBMISSION_WEBHOOK_URL`. Digest signups are not stored server-side unless `DIGEST_WEBHOOK_URL` is an `https` URL.
 
 ## Deploy to Vercel (Hobby) from GitHub
 
 1. Import `https://github.com/sean0007/appgate-pack`.
 2. Framework: **Next.js**. Build: `npm run build`.
-3. Set `NEXT_PUBLIC_SITE_URL`. Leave Stripe blank until you care about charging.
+3. Set `NEXT_PUBLIC_SITE_URL` to `https://appgate-pack.vercel.app` (or your domain). If unset, metadata uses that origin. Leave Stripe blank until you care about charging. Digest stays a local stub until `DIGEST_WEBHOOK_URL` is `https`.
 4. Confirm `/`, `/check`, `/free/4-2-capacitor`, `/digest`.
 
 ## Kit content
