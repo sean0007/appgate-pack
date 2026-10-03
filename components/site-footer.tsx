@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SIBLING_TOOLS } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -13,29 +14,19 @@ export function SiteFooter() {
           </p>
           <p className="mt-3 text-xs leading-5 text-muted">
             More free tools{" "}
-            <a
-              href="https://ads-risk-check.vercel.app"
-              className="underline decoration-line underline-offset-2 hover:text-ink"
-              rel="noreferrer"
-            >
-              Ads risk check
-            </a>
-            {" · "}
-            <a
-              href="https://ai-bottleneck-map.vercel.app"
-              className="underline decoration-line underline-offset-2 hover:text-ink"
-              rel="noreferrer"
-            >
-              AI bottleneck map
-            </a>
-            {" · "}
-            <a
-              href="https://viral-attention-map.vercel.app"
-              className="underline decoration-line underline-offset-2 hover:text-ink"
-              rel="noreferrer"
-            >
-              Viral attention map
-            </a>
+            {SIBLING_TOOLS.map((tool, i) => (
+              <span key={tool.href}>
+                {i > 0 ? " · " : null}
+                <a
+                  href={tool.href}
+                  className="underline decoration-line underline-offset-2 hover:text-ink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {tool.label}
+                </a>
+              </span>
+            ))}
           </p>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
