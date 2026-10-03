@@ -45,3 +45,4 @@ next-env.d.ts
 # overnight intake (runtime)
 data/submissions/*.json
 !data/submissions/.gitkeep
+.env*
