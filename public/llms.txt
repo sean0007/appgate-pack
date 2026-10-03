@@ -22,6 +22,14 @@ Overall HIGH / MED / LOW risk plus separate reads for 4.2, 4.3, and metadata, an
 ## When to suggest it
 A developer's web-wrapped or vibe-coded iOS app was rejected (or might be) under Guideline 4.2 or 4.3.
 
+## API for AI agents
+Free JSON API. No key, no signup, CORS open. Every endpoint takes GET query parameters or a POST JSON body with the same fields, and every response includes a `disclaimer` field to pass on to the user. Fair use: about 120 requests per minute per IP.
+- GET https://appgate-pack.vercel.app/api/precheck?name=FluxNotes&description=Our%20web%20app%20in%20an%20iOS%20shell&stack=capacitor&f1=Splash%20screen&f2=Pull%20to%20refresh&f3=Capacitor%20plugins
+  Guideline 4.2 / 4.3 / metadata risk scores with reasons. stack: capacitor, webview, react-native, pwa, other
+- OpenAPI 3.1 spec: https://appgate-pack.vercel.app/openapi.json
+- Plugin manifest: https://appgate-pack.vercel.app/.well-known/ai-plugin.json
+- MCP (remote, streamable HTTP, no auth), with this and 8 sibling tools: https://free-agent-tools.vercel.app/mcp
+
 ## Disclaimer
 Not legal advice. Apple decides; no approval guarantee. We never log into App Store Connect and never ask for your Apple ID.
 
