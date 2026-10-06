@@ -49,8 +49,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const input = parseCheckInput(await searchParams);
   if (!input) {
     return checkShareMetadata(
-      "Free App Store wrapper precheck",
-      "Paste your stack and three native features. Get a shareable HIGH / MED / LOW card for Guidelines 4.2, 4.3, and metadata. No login. No payment. Not a guarantee — Apple decides.",
+      "Free Guideline 4.2 / 4.3 precheck for Capacitor & WebView apps",
+      "Will Apple reject your wrapper app? Paste your stack and three native features for a free, shareable HIGH / MED / LOW card for Guidelines 4.2, 4.3, and metadata. No login. Not a guarantee: Apple decides.",
       "/check",
     );
   }
@@ -78,9 +78,9 @@ export default async function CheckPage({ searchParams }: Props) {
         Will Apple bounce this wrapper?
       </h1>
       <p className="mt-4 max-w-2xl text-base leading-7 text-muted">
-        Instant 4.2 / 4.3 / metadata heuristic for Capacitor, WebView, PWA, and
-        vibe-coded iOS shells. The result is the product — screenshot it, copy
-        the link, send it to the group chat.
+        Instant Guideline 4.2 / 4.3 / metadata read for Capacitor, WebView,
+        PWA, and vibe-coded iOS shells. Every result gets its own link, so you
+        can send it to a cofounder or client.
       </p>
 
       {input && result ? (
@@ -114,8 +114,8 @@ export default async function CheckPage({ searchParams }: Props) {
         <aside className="mt-12 rounded-xl border border-dashed border-line bg-card px-5 py-5">
           <p className="text-sm font-medium text-ink">If this stung</p>
           <p className="mt-1 text-sm leading-6 text-muted">
-            Grab the free Capacitor evidence checklist, or browse pack templates.
-            Paid checkout stays optional / later.
+            Grab the free Capacitor evidence checklist, or browse the free reply
+            templates.
           </p>
           <div className="mt-4 flex flex-wrap gap-4 text-sm">
             <Link href="/free/4-2-capacitor" className="text-accent underline">
@@ -123,9 +123,6 @@ export default async function CheckPage({ searchParams }: Props) {
             </Link>
             <Link href="/kit" className="text-accent underline">
               Kit templates
-            </Link>
-            <Link href="/overnight" className="text-accent underline">
-              Overnight pack (later)
             </Link>
           </div>
         </aside>

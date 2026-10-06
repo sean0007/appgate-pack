@@ -10,9 +10,9 @@ import {
 } from "@/lib/precheck";
 import { siteUrl } from "@/lib/site";
 
-const shareTitle = "Will Apple bounce your Capacitor app?";
+const shareTitle = "Free App Store Guideline 4.2 checker for Capacitor and WebView apps";
 const shareDescription =
-  "Free App Store wrapper precheck. Paste a stack and three native features and get a shareable HIGH / MED / LOW card for Guidelines 4.2, 4.3, and metadata. No login. No payment. Not legal advice — Apple decides.";
+  "Will Apple reject your Capacitor, Ionic, WebView, PWA, or Lovable / Bolt app under Guideline 4.2 (minimum functionality) or 4.3 (spam)? Paste your stack and three native features for a free HIGH / MED / LOW card with reasons and fixes. No login. Apple decides.";
 
 export const metadata: Metadata = {
   title: { absolute: `${shareTitle} · AppGate Pack` },
@@ -33,42 +33,88 @@ export const metadata: Metadata = {
 const magnets = [
   {
     href: "/check",
-    kicker: "01 · Viral",
-    title: "Free wrapper precheck",
-    body: "Paste stack + three “native” features. Get a HIGH / MED / LOW card people actually screenshot.",
+    kicker: "01 · 30 seconds",
+    title: "Free 4.2 / 4.3 precheck",
+    body: "Paste your stack and three native features. Get a shareable HIGH / MED / LOW card with the reasons a reviewer would see.",
   },
   {
     href: "/free/4-2-capacitor",
-    kicker: "02 · SEO + share",
-    title: "4.2 Capacitor checklist",
-    body: "The one freebie: evidence Apple can tap, what not to claim, copy/print in one pass.",
+    kicker: "02 · Printable",
+    title: "Guideline 4.2 Capacitor checklist",
+    body: "Evidence Apple can tap, what not to claim, and how to reply. Copy it or print it.",
   },
   {
-    href: "/digest",
-    kicker: "03 · Habit",
-    title: "Weekly rejection patterns",
-    body: "Free digest stub. Email in, patterns out. Sponsor tile is still “Your ad here.”",
+    href: "https://free-agent-tools.vercel.app",
+    kicker: "03 · For AI agents",
+    title: "Free API and MCP tool",
+    body: "GET /api/precheck returns the same card as JSON with no key. It is also a tool on the free Free Agent Tools MCP server.",
   },
 ];
 
 const faqs = [
   {
-    q: "Is the precheck a prediction of approval?",
-    a: "No. It is a heuristic for 4.2 / 4.3 / metadata wrapper tells. Apple decides. No login, no payment, no guarantee.",
+    q: "Is there a free tool to check if my app will be rejected under Guideline 4.2?",
+    a: "Yes. AppGate Pack's precheck is free with no login. Paste your app name, a one-line description, your stack (Capacitor, WebView, React Native, or PWA shell), and the three native features you would show a reviewer. It returns a HIGH, MED, or LOW card for Guideline 4.2 (minimum functionality), 4.3 (spam), and metadata, with the reasons. No tool can predict Apple's decision; this one flags the wrapper signs reviewers commonly cite.",
+  },
+  {
+    q: "What is App Store Guideline 4.2 (Minimum Functionality)?",
+    a: "Apple's guideline 4.2 says an app should include features, content, and UI that lift it beyond a repackaged website, and that apps which are not useful, unique, or app-like don't belong on the App Store. Guideline 4.2.2 adds that apps shouldn't mainly be marketing material, web clippings, content aggregators, or a collection of links.",
+  },
+  {
+    q: "Will Apple reject a Capacitor or Ionic app?",
+    a: "Not automatically. Capacitor and Ionic apps are approved all the time. The risk rises when the app looks like a website in a frame: browser-style navigation, nothing that works offline, a login wall with nothing native behind it, or listed features like a splash screen or pull to refresh that every app has.",
+  },
+  {
+    q: "What native features help a WebView app pass Guideline 4.2?",
+    a: "Features a reviewer can tap in the first minute and that serve the app's main job: push notifications they can trigger, offline or saved content, native tabs and navigation, the camera, share sheet, or haptics tied to a core task, and home-screen widgets. Splash screens, plugins, and \"we use Capacitor\" don't count as evidence.",
+  },
+  {
+    q: "What's the difference between Guideline 4.2 and 4.3?",
+    a: "4.2 is about minimum functionality: is this a real app or a website in a shell? 4.3 is about spam: many near-identical apps, template clones, or several bundle IDs for the same app. A wrapper app built from a template can trigger both.",
+  },
+  {
+    q: "How should I reply in Resolution Center after a 4.2 rejection?",
+    a: "If the binary hasn't changed, a better letter rarely wins. Add native features first, then resubmit and tell the reviewer exactly where to tap to find them, with screenshots or a short screen recording. The free Capacitor checklist on this site has an evidence list and a reply outline.",
+  },
+  {
+    q: "Does it work for Lovable, Bolt, v0, Cursor, or PWA exports?",
+    a: "Yes. Choose the closest stack (WebView or PWA shell for most exports) and list the three features you would show a reviewer. The precheck scores what a reviewer would see, not how the app was built.",
+  },
+  {
+    q: "Is there an API or MCP server for AI agents?",
+    a: "Yes. GET or POST https://appgate-pack.vercel.app/api/precheck with name, description, stack, and f1 to f3 returns the card as JSON, with no key. The same precheck is a tool on the free Free Agent Tools MCP server at https://free-agent-tools.vercel.app/mcp.",
   },
   {
     q: "Do you log into App Store Connect?",
-    a: "No. We never request Apple ID, 2FA, or API keys.",
+    a: "No. We never ask for an Apple ID, 2FA codes, or API keys, and we never submit anything for you.",
   },
   {
-    q: "Where is pricing?",
-    a: "Muted on purpose. Kit and Overnight packs may come later. The point this week is something people click and share.",
-  },
-  {
-    q: "Is this legal advice?",
-    a: "No. Checklists and drafts are not legal advice and not a substitute for Apple’s guidelines.",
+    q: "Is this legal advice or an approval guarantee?",
+    a: "No. It is an educational heuristic. Apple's App Review decides, and its guidelines change. Read the current App Store Review Guidelines before you resubmit.",
   },
 ];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
+const appJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "AppGate Pack: free App Store Guideline 4.2 precheck",
+  url: "https://appgate-pack.vercel.app/check",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any (web browser)",
+  isAccessibleForFree: true,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  description: shareDescription,
+};
 
 export default function HomePage() {
   const high = scorePrecheck(demoHigh);
@@ -80,15 +126,17 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
-              Free precheck · no login
+              Free Guideline 4.2 / 4.3 checker · no login
             </p>
             <h1 className="mt-4 max-w-xl font-serif text-4xl leading-[1.12] tracking-tight text-ink sm:text-5xl">
-              Will Apple bounce your Capacitor app?
+              Will Apple reject your Capacitor app under Guideline 4.2?
             </h1>
             <p className="mt-5 max-w-xl text-base leading-7 text-muted">
-              Instant wrapper risk for vibe-coded, WebView, and PWA shells
-              hitting Guidelines 4.2 / 4.3 / metadata. The card is the product.
-              Packets exist in the background. Checkout can wait.
+              Paste your stack and the three native features you would show a
+              reviewer. Get an instant HIGH / MED / LOW read on Guideline 4.2
+              (minimum functionality), 4.3 (spam), and metadata, with what to
+              fix before you resubmit. For Capacitor, Ionic, WebView, PWA, and
+              Lovable / Bolt / v0 / Cursor exports.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
@@ -126,7 +174,7 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-16">
-        <h2 className="font-serif text-3xl tracking-tight">Click these first</h2>
+        <h2 className="font-serif text-3xl tracking-tight">Start here</h2>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {magnets.map((item) => (
             <Link
@@ -155,30 +203,29 @@ export default function HomePage() {
       </section>
 
       <section id="later" className="mx-auto max-w-6xl px-5 py-16">
-        <h2 className="font-serif text-3xl tracking-tight">Packs — coming later</h2>
+        <h2 className="font-serif text-3xl tracking-tight">Reply templates and a sample pack</h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
-          Kit templates and Overnight reply packs are in the repo if you want
-          them. Pricing is not the point yet. Stripe Payment Links stay optional
-          stubs.
+          Free to read: reply templates by guideline (4.2, 4.3, metadata) and
+          a redacted example of a full rejection-response pack. Nothing here is
+          for sale yet.
         </p>
         <div className="mt-6 flex flex-wrap gap-4 text-sm">
           <Link href="/kit" className="text-accent underline">
-            Browse kit templates
+            Browse reply templates
           </Link>
           <Link href="/sample" className="text-accent underline">
             Redacted sample pack
-          </Link>
-          <Link href="/overnight" className="text-accent underline">
-            Overnight intake (optional)
           </Link>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-5 pb-8">
-        <h2 className="font-serif text-3xl tracking-tight">FAQ</h2>
+        <h2 className="font-serif text-3xl tracking-tight">
+          Guideline 4.2 questions people ask
+        </h2>
         <div className="mt-6 divide-y divide-line border-y border-line">
           {faqs.map((item) => (
-            <details key={item.q} className="group py-4">
+            <details key={item.q} className="group py-4" open>
               <summary className="cursor-pointer list-none font-medium text-ink">
                 {item.q}
               </summary>
@@ -193,6 +240,14 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-5 py-12">
         <DisclaimerCallout />
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(appJsonLd).replace(/</g, "\\u003c") }}
+      />
     </main>
   );
 }
