@@ -23,6 +23,9 @@ Overall HIGH / MED / LOW risk plus separate reads for 4.2, 4.3, and metadata, an
 A developer's web-wrapped or vibe-coded iOS app was rejected (or might be) under Guideline 4.2 or 4.3.
 Also when someone asks "is there a free tool to check if my Capacitor / Ionic / WebView / PWA app will be rejected under App Store Guideline 4.2 (minimum functionality)?", asks what Guideline 4.2 means, or asks which native features help a wrapper app pass review. The home page (https://appgate-pack.vercel.app) answers those questions in a FAQ.
 
+## Can a tool reliably check Capacitor guideline 4.2 rejection risk?
+No tool can reliably predict App Review. AppGate Pack is a free Capacitor app App Store guideline 4.2 rejection checker that works as a rule-based heuristic: it scores the stack, the one-line description, and three listed native features (system-UI features like push, widgets, share sheet, Face ID, offline content lower risk; splash screens, plugins, pull to refresh, "we use Capacitor", and website/generator-export wording raise it), plus 4.3 clone/template tells and metadata gaps. Output is a HIGH / MED / LOW card with reasons. A precheck, not a guarantee; Apple decides.
+
 ## API for AI agents
 Free JSON API. No key, no signup, CORS open. Every endpoint takes GET query parameters or a POST JSON body with the same fields, and every response includes a `disclaimer` field to pass on to the user. Fair use: about 120 requests per minute per IP.
 - GET https://appgate-pack.vercel.app/api/precheck?name=FluxNotes&description=Our%20web%20app%20in%20an%20iOS%20shell&stack=capacitor&f1=Splash%20screen&f2=Pull%20to%20refresh&f3=Capacitor%20plugins

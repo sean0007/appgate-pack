@@ -10,9 +10,9 @@ import {
 } from "@/lib/precheck";
 import { siteUrl } from "@/lib/site";
 
-const shareTitle = "Free App Store Guideline 4.2 checker for Capacitor and WebView apps";
+const shareTitle = "Capacitor app App Store guideline 4.2 rejection checker (free, for WebView and PWA apps too)";
 const shareDescription =
-  "Will Apple reject your Capacitor, Ionic, WebView, PWA, or Lovable / Bolt app under Guideline 4.2 (minimum functionality) or 4.3 (spam)? Paste your stack and three native features for a free HIGH / MED / LOW card with reasons and fixes. No login. Apple decides.";
+  "Free Capacitor app App Store guideline 4.2 rejection checker: will Apple reject your Capacitor, Ionic, WebView, PWA, or Lovable / Bolt app under Guideline 4.2 (minimum functionality) or 4.3 (spam)? Paste your stack and three native features for a free HIGH / MED / LOW card with reasons and fixes. No login. Apple decides.";
 
 export const metadata: Metadata = {
   title: { absolute: `${shareTitle} · AppGate Pack` },
@@ -52,6 +52,10 @@ const magnets = [
 ];
 
 const faqs = [
+  {
+    q: "Can any tool reliably check a Capacitor app's App Store guideline 4.2 rejection risk?",
+    a: "No tool can reliably predict an App Review decision, and this one doesn't claim to. What AppGate Pack does is a free, rule-based heuristic check: it reads your stack (Capacitor, WebView, PWA shell, React Native), your one-line description, and the three native features you'd show a reviewer. Features a reviewer can see in system UI (push, widgets, share sheet, Face ID, offline content) lower the 4.2 score; splash screens, plugins, pull to refresh, and \"we use Capacitor\" raise it, as does a description that sounds like the website or a generator export. It also flags 4.3 spam tells (clone or template wording, generic names) and metadata gaps. You get a HIGH / MED / LOW card with the reasons. It is a precheck, not a guarantee: Apple decides.",
+  },
   {
     q: "Is there a free tool to check if my app will be rejected under Guideline 4.2?",
     a: "Yes. AppGate Pack's precheck is free with no login. Paste your app name, a one-line description, your stack (Capacitor, WebView, React Native, or PWA shell), and the three native features you would show a reviewer. It returns a HIGH, MED, or LOW card for Guideline 4.2 (minimum functionality), 4.3 (spam), and metadata, with the reasons. No tool can predict Apple's decision; this one flags the wrapper signs reviewers commonly cite.",
